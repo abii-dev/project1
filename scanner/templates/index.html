@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3">
+            <div class="col">
+                <div class="card-container">
+                    <div class="card-header">Grand Totals</div>
+                    <div class="card-body">
+                        <table class="table table-bordered totals-table">
+                            <tbody>
+                                {% for grade, count in grand_totals.items %}
+                                <tr>
+                                    <td><span class="
+                                        {% if grade == 'A+' %}
+                                            grade-a-plus
+                                        {% elif grade == 'A' %}
+                                            grade-a
+                                        {% elif grade == 'B' %}
+                                            grade-b
+                                        {% elif grade == 'C' %}
+                                            grade-c
+                                        {% elif grade == 'D' %}
+                                            grade-d
+                                        {% elif grade == 'E' %}
+                                            grade-e
+                                        {% elif grade == 'F' %}
+                                            grade-f
+                                        {% endif %}
+                                    ">{{ grade }}
+                                </span></td>
+                                    <td>{{ count }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card-container">
+                    <div class="card-header">Recent Scans</div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for scan in recent_scans %}
+                            <li class="list-group-item">
+                                <a href="{{ scan.url }}">{{ scan.url|truncatechars:25 }}</a>
+                                <span class="
+                                        {% if scan.grade == 'A+' %}
+                                            grade-a-plus
+                                        {% elif scan.grade == 'A' %}
+                                            grade-a
+                                        {% elif scan.grade == 'B' %}
+                                            grade-b
+                                        {% elif scan.grade == 'C' %}
+                                            grade-c
+                                        {% elif scan.grade == 'D' %}
+                                            grade-d
+                                        {% elif scan.grade == 'E' %}
+                                            grade-e
+                                        {% elif scan.grade == 'F' %}
+                                            grade-f
+                                        {% endif %}
+                                    ">{{ scan.grade }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card-container">
+                    <div class="card-header">Hall of Fame</div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for scan in hall_of_fame %}
+                            <li class="list-group-item">
+                                <a href="{{ scan.url }}">{{ scan.url|truncatechars:25 }}</a>
+                                <span style="color: green;">{{ scan.grade }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card-container">
+                    <div class="card-header">Hall of Shame</div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for scan in hall_of_shame %}
+                            <li class="list-group-item">
+                                <a href="{{ scan.url }}">{{ scan.url|truncatechars:25 }}</a>
+                                <span style="color: red;">{{ scan.grade }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock content %}
+

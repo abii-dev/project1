@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="scan-summary">
+            <h2>Security Report Summary</h2>
+            <div class="row mb-4">
+                <div class="col-md-2">
+                    <div class="grade-box 
+                        {% if scan_result.grade in 'BCD' %}
+                            warning
+                        {% elif scan_result.grade == 'F' %}
+                            error
+                        {% endif %}
+                    ">
+                        {{ scan_result.grade }}
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Site</th>
+                            <td><a href="{{ scan_result.url }}" target="_blank">{{ scan_result.url }}</a></td>
+                        </tr>
+                        <tr>
+                            <th>IP Address</th>
+                            <td>{{ scan_result.ip_address }}</td>
+                        </tr>
+                        <tr>
+                            <th>Report Time</th>
+                            <td>{{ scan_result.time }}</td>
+                        </tr>
+                        <tr>
+                            <th>Headers</th>
+                            <td>
+                                <ul class="list-unstyled">
+                                    {% for header, status in scan_result.headers.items %}
+                                    <li class="header-status" style="display: inline-block; margin-right: 5px; margin-bottom: 5px;">
+                                        {% if status == 'Enabled' %}
+                                            <span class="badge bg-success">{{ header }}</span>
+                                        {% else %}
+                                            <span class="badge bg-danger">{{ header }}</span>
+                                        {% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+            <a href="/" class="btn btn-secondary">Scan another site</a>
+        </div>
+    </div>
+
+    {% endblock content %}

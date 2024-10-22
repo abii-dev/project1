@@ -77,7 +77,12 @@
                             {% for scan in hall_of_fame %}
                             <li class="list-group-item">
                                 <a href="{{ scan.url }}">{{ scan.url|truncatechars:25 }}</a>
-                                <span style="color: green;">{{ scan.grade }}</span>
+                                <span class="
+                                {% if scan.grade == 'A+' %}
+                                    grade-a-plus
+                                {% elif scan.grade == 'A' %}
+                                    grade-a
+                                {% endif %}">{{ scan.grade }}</span>
                             </li>
                             {% endfor %}
                         </ul>

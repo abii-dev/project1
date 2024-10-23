@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+%e==(9in78&(@qc)f^(az8mmafxv8xo1hi%14i1^(q^3zq0(t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'web_scanner.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db1_8sbc',
+        'USER': 'db1_8sbc_user',
+        'PASSWORD': 'tnnHc28UT4MjvE302IWYTdS48DSyH3mR',
+        'HOST': 'dpg-csbt3lbtq21c73a7v790-a',
+        'PORT': '5432',
     }
 }
 
@@ -117,6 +121,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
+import os
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

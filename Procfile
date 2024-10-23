@@ -1,1 +1,0 @@
-web: web_scanner.wsgi

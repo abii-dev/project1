@@ -2,14 +2,16 @@
 {% block content %}
     <div class="container mt-5">
         <div class="scan-summary">
-            <h2>Security Report Summary</h2>
+            <h2 style="margin-bottom: 20px">Security Report Summary</h2>
             <div class="row mb-4">
                 <div class="col-md-2">
-                    <div class="grade-box 
-                        {% if scan_result.grade in 'BCD' %}
-                            warning
-                        {% elif scan_result.grade == 'F' %}
-                            error
+                    <div class="grade-box" style="background-color: 
+                    {% if scan_result.grade in 'BC' %}
+                        yellow;
+                    {% elif scan_result.grade in 'DE' %}
+                        orange;
+                    {% elif scan_result.grade == 'F' %}
+                        danger;
                         {% endif %}
                     ">
                         {{ scan_result.grade }}
